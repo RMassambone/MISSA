@@ -135,7 +135,7 @@ int main( int argc, char **argv )
    // Stochastic errors
    seed = 123456;
    for (int j = 0; j < agents.size(); j++){
-	   agents[j] = j;
+   	agents[j] = j;
    }
    shuffle (agents.begin(), agents.end(), std::default_random_engine(seed));
    
@@ -181,38 +181,13 @@ int main( int argc, char **argv )
 		  obj = RN1.eval(x);
 		  RN1_vect.push_back(obj);
 		  
-		  if ( k == 1000000 ){
-			  std::cout << "cpu time = " << cpu_time << "\n";
-			  std::cout << "Tempo por iteracao = " << cpu_time / (k+1) << "\n";
-			  std::cout << "k = " << k << "\n";
-			  exit(3);
-			  return(3);
-		  }
-		  
 		  // Update Markov states
 		  cur_states[0] = next_states[0];
       }
       
-      std::cout << "CPU TIME FOR TEST " << test << ": " << cpu_time << "\n";
-      
-      // Write time in a file.
-	  /*
-	  char buffer [500];
-	  int str = std::sprintf(buffer, "/home/rmassambone/Documentos/Elias-Eduardo/MISSA-testes/results/diminishing-stepsize/longer_horizon/time_cyclic_test-%d.txt", test );
-	  FILE * arq;
-	  arq = std::fopen (buffer , "w" );
-	  for(int i = 0; i < time_vect.size(); i++){
-	    std::fprintf(arq, "%.16lf", time_vect[i] );
-		std::fprintf(arq, "\n");
-	  }
-	  std::fclose(arq);
-	  
-	  time_vect.clear();
-	  */
-	  
 	  // Write objective values in a file.
 	  char buffer [500];
-	  int str = std::sprintf(buffer, "/home/rmassambone/Documentos/Elias-Eduardo/MISSA-testes/results/diminishing-stepsize/objective_cyclic_test-%d.txt", test );
+	  int str = std::sprintf(buffer, "/home/objective_cyclic_test-%d.txt", test );
 	  FILE * arq;
 	  arq = std::fopen (buffer, "w" );
 	  for(int i = 0; i < RN1_vect.size(); i++){
@@ -221,35 +196,7 @@ int main( int argc, char **argv )
 	  }
 	  std::fclose(arq);
 	  
-	  RN1_vect.clear();
-	  
-	  // Write time_best in a file.
-	  /*
-	  char buffer3 [500];
-	  int str3 = std::sprintf(buffer3, "/home/rmassambone/Documentos/Elias-Eduardo/MISSA-testes/results/diminishing-stepsize/longer_horizon/time_best_cyclic_test-%d.txt", test );
-	  FILE * arq3;
-	  arq3 = std::fopen (buffer3 , "w" );
-	  for(int i = 0; i < time_best.size(); i++){
-	    std::fprintf(arq3, "%.16lf", time_best[i] );
-		std::fprintf(arq3, "\n");
-	  }
-	  std::fclose(arq3);
-	  
-	  time_best.clear();
-	  
-	  // Write the best objective values in a file.
-	  char buffer4 [500];
-	  int str4 = std::sprintf(buffer4, "/home/rmassambone/Documentos/Elias-Eduardo/MISSA-testes/results/diminishing-stepsize/longer_horizon/objective_best_cyclic_test-%d.txt", test );
-	  FILE * arq4;
-	  arq4 = std::fopen (buffer4 , "w" );
-	  for(int i = 0; i < best_obj_vect.size(); i++){
-	    std::fprintf(arq4, "%.16lf", best_obj_vect[i] );
-		std::fprintf(arq4, "\n");
-	  }
-	  std::fclose(arq4);
-	  
-	  best_obj_vect.clear();
-      */      
+	  RN1_vect.clear();      
    }
    
    return( 0 );
