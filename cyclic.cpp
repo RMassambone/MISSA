@@ -139,7 +139,7 @@ int main( int argc, char **argv )
    }
    shuffle (agents.begin(), agents.end(), std::default_random_engine(seed));
    
-   for ( int test = 2; test < 3; test++ ){
+   for ( int test = 1; test < 7; test++ ){
 	   
 	   // Initial guess
 	   for (int i = 0; i < x.size(); i++)
@@ -182,6 +182,8 @@ int main( int argc, char **argv )
 		   // Update Markov states
 		   cur_states[0] = next_states[0];
 	   }
+	   
+	   std::cout << "CPU TIME FOR TEST " << test << ": " << cpu_time << "\n";
 	   
 	   // Write objective values in a file.
 	   char buffer [500];
