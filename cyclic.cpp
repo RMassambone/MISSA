@@ -1,11 +1,11 @@
-#include <sstream>         					// std::istringstream, std::ostringstream
-#include <iostream>        					// std::cin, std::cerr, std::cout, std::ofstream, std::ios::bin
-#include <stdlib.h>        					// exit()
-#include <chrono>	    					// std::chrono
-#include <math.h>	    					// pow
-#include <stdio.h>          				// sprintf, fprintf
-#include "MISSA_inline.h"   				// MISSA
-#include "funcao_inline.h"					// objective function and subgradients
+#include <sstream>                          // std::istringstream, std::ostringstream
+#include <iostream>                         // std::cin, std::cerr, std::cout, std::ofstream, std::ios::bin
+#include <stdlib.h>                         // exit()
+#include <chrono>                           // std::chrono
+#include <math.h>                           // pow
+#include <stdio.h>                          // sprintf, fprintf
+#include "MISSA_inline.h"                   // MISSA
+#include "funcao_inline.h"                  // objective function and subgradients
 #include "inc_subgrad_inline.h"             // incremental subgradient method
 #include "markov_chain_inline.h"            // markov chains
 #include "stochastic_errors_inline.h"       // stochastic erros
@@ -157,46 +157,43 @@ int main( int argc, char **argv )
 	   RN1_vect.push_back(obj);
 	   
 	   for (int k = 0; k < niters; k++){
-		  
-		  next_states[0] = MC.eval_MC_time(k, cur_states[0]);
-		  
-		  err_op.get_error( k, next_states[0], eps[0] );
-		  
-	      // Starting iteration
-	      auto iterstart( std::chrono::high_resolution_clock::now() );
-	      
-	      // Optimization step
-	      cyclic_op.apply( a / pow(k + 1.0, xi), next_states, eps, x );
-		  
-		  // Projection
-		  proj_op.apply(x);
-		  
-	      // Ending iteration
-	      auto iterend( std::chrono::high_resolution_clock::now() );
-
-	      // Storing time
-		  cpu_time = cpu_time + (iterend - iterstart).count() * 1e-9;
-		  
-		  // Storing objective value
-		  obj = RN1.eval(x);
-		  RN1_vect.push_back(obj);
-		  
-		  // Update Markov states
-		  cur_states[0] = next_states[0];
-      }
-      
-	  // Write objective values in a file.
-	  char buffer [500];
-	  int str = std::sprintf(buffer, "/home/objective_cyclic_test-%d.txt", test );
-	  FILE * arq;
-	  arq = std::fopen (buffer, "w" );
-	  for(int i = 0; i < RN1_vect.size(); i++){
-	    std::fprintf(arq, "%.16lf", RN1_vect[i] );
-		std::fprintf(arq, "\n");
-	  }
-	  std::fclose(arq);
-	  
-	  RN1_vect.clear();      
+		   next_states[0] = MC.eval_MC_time(k, cur_states[0]);
+		   err_op.get_error( k, next_states[0], eps[0] );
+		   
+		   // Starting iteration
+		   auto iterstart( std::chrono::high_resolution_clock::now() );
+		   
+		   // Optimization step
+		   cyclic_op.apply( a / pow(k + 1.0, xi), next_states, eps, x );
+		   
+		   // Projection
+		   proj_op.apply(x);
+		   
+		   // Ending iteration
+		   auto iterend( std::chrono::high_resolution_clock::now() );
+		   
+	       // Storing time
+		   cpu_time = cpu_time + (iterend - iterstart).count() * 1e-9;
+		   
+		   // Storing objective value
+		   obj = RN1.eval(x);
+		   RN1_vect.push_back(obj);
+		   
+		   // Update Markov states
+		   cur_states[0] = next_states[0];
+	   }
+	   
+	   // Write objective values in a file.
+	   char buffer [500];
+	   int str = std::sprintf(buffer, "/home/objective_cyclic_test-%d.txt", test );
+	   FILE * arq;
+	   arq = std::fopen (buffer, "w" );
+	   for(int i = 0; i < RN1_vect.size(); i++){
+		   std::fprintf(arq, "%.16lf", RN1_vect[i] );
+		   std::fprintf(arq, "\n");
+	   }
+	   std::fclose(arq);
+	   RN1_vect.clear();      
    }
    
    return( 0 );
