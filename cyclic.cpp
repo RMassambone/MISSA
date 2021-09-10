@@ -172,7 +172,7 @@ int main( int argc, char **argv )
 		   // Ending iteration
 		   auto iterend( std::chrono::high_resolution_clock::now() );
 		   
-	       // Storing time
+		   // Storing time
 		   cpu_time = cpu_time + (iterend - iterstart).count() * 1e-9;
 		   
 		   // Storing objective value
