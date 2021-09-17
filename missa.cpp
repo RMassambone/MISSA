@@ -3,13 +3,13 @@
 #include <stdlib.h>        					// exit()
 #include <chrono>	    					// std::chrono
 #include <math.h>	    					// pow
-#include <stdio.h>          				// sprintf, fprintf
-#include "MISSA_inline.h"   				// MISSA
+#include <stdio.h>          				        // sprintf, fprintf
+#include "MISSA_inline.h"   				        // MISSA
 #include "funcao_inline.h"					// objective function and subgradients
-#include "inc_subgrad_inline.h"             // incremental subgradient method
-#include "markov_chain_inline.h"            // markov chains
-#include "stochastic_errors_inline.h"       // stochastic erros
-#include "feas_inline.h"                    // Projection
+#include "inc_subgrad_inline.h"                                 // incremental subgradient method
+#include "markov_chain_inline.h"                                // markov chains
+#include "stochastic_errors_inline.h"                           // stochastic erros
+#include "feas_inline.h"                                        // Projection
 
 void error( int err )
 {
@@ -145,11 +145,13 @@ int main( int argc, char **argv )
    }
    shuffle (agents.begin(), agents.end(), std::default_random_engine(seed));
    
-   for ( int test = 2; test < 3; test++ ){
+   for ( int test = 1; test < 9; test++ ){
 	   
 	   // Initial guess
 	   for (int i = 0; i < x.size(); i++)
 		   x[i] = 0.0;
+	   
+	   // Projection
 	   proj_op.apply(x);
 	   
 	   // Object to get stochastic errors
@@ -171,24 +173,23 @@ int main( int argc, char **argv )
 		  next_states[1] = MC2.eval_MC_time(k, cur_states[1]);
 		  
 		  // Stepsize
-		  if ( k > 0 && (k % 2) == 0 ){
+		  if ( k > 0 && (k % 2) == 0 )
 			  t = t + 1.0;
-		  }
 		  
 		  err_op.get_error( k, next_states[0], eps[0] );
 		  err_op.get_error( k, next_states[1], eps[1] );
 		  
-	      // Starting iteration
-	      auto iterstart( std::chrono::high_resolution_clock::now() );
+	          // Starting iteration
+	          auto iterstart( std::chrono::high_resolution_clock::now() );
 	      
-	      // Optimization step
-	      missa_op.apply( a / pow(t + 1.0, xi), next_states, eps, x );
+	          // Optimization step
+	          missa_op.apply( a / pow(t + 1.0, xi), next_states, eps, x );
 		  
-		  // Projection
-		  proj_op.apply(x);
+	          // Projection
+	          proj_op.apply(x);
 		  
-	      // Ending iteration
-	      auto iterend( std::chrono::high_resolution_clock::now() );
+	          // Ending iteration
+	          auto iterend( std::chrono::high_resolution_clock::now() );
 
 		  // Storing time
 		  cpu_time = cpu_time + (iterend - iterstart).count() * 1e-9;
@@ -197,76 +198,25 @@ int main( int argc, char **argv )
 		  obj = RN1.eval(x);
 		  RN1_vect.push_back(obj);
 		  
-		  if ( k == 1000000 ){
-			  std::cout << "cpu time = " << cpu_time << "\n";
-			  std::cout << "Tempo por iteracao = " << cpu_time / (k+1) << "\n";
-			  std::cout << "k = " << k << "\n";
-			  exit(3);
-			  return(3);
-		  }
-		  
 		  // Update Markov states
 		  cur_states[0] = next_states[0];
 		  cur_states[1] = next_states[1];
-      }
+           }
       
       std::cout << "CPU TIME FOR TEST " << test << ": " << cpu_time << "\n";
-      
-      // Write time in a file.
-	  /*
-	  char buffer [500];
-	  int str = std::sprintf(buffer, "/home/rmassambone/Documentos/Elias-Eduardo/MISSA-testes/results/diminishing-stepsize/longer_horizon/time_MISSA_test-%d.txt", test );
-	  FILE * arq;
-	  arq = std::fopen (buffer , "w" );
-	  for(int i = 0; i < time_vect.size(); i++){
-	    std::fprintf(arq, "%.16lf", time_vect[i] );
-		std::fprintf(arq, "\n");
-	  }
-	  std::fclose(arq);
-	  
-	  time_vect.clear();
-	  */
-	  
-	  // Write objective values ina file.
-	  char buffer [500];
-	  int str = std::sprintf(buffer, "/home/rmassambone/Documentos/Elias-Eduardo/MISSA-testes/results/diminishing-stepsize/objective_MISSA_test-%d.txt", test );
-	  FILE * arq;
-	  arq = std::fopen (buffer, "w" );
-	  for(int i = 0; i < RN1_vect.size(); i++){
-	    std::fprintf(arq, "%.16lf", RN1_vect[i] );
-		std::fprintf(arq, "\n");
-	  }
-	  std::fclose(arq);
-	  
-	  RN1_vect.clear();
-	  
-	  // Write time_best in a file.
-	  /*
-	  char buffer3 [500];
-	  int str3 = std::sprintf(buffer3, "/home/rmassambone/Documentos/Elias-Eduardo/MISSA-testes/results/diminishing-stepsize/longer_horizon/time_best_MISSA_test-%d.txt", test );
-	  FILE * arq3;
-	  arq3 = std::fopen (buffer3 , "w" );
-	  for(int i = 0; i < time_best.size(); i++){
-	    std::fprintf(arq3, "%.16lf", time_best[i] );
-		std::fprintf(arq3, "\n");
-	  }
-	  std::fclose(arq3);
-	  
-	  time_best.clear();
-	  
-	  // Write the best objective values in a file.
-	  char buffer4 [500];
-	  int str4 = std::sprintf(buffer4, "/home/rmassambone/Documentos/Elias-Eduardo/MISSA-testes/results/diminishing-stepsize/longer_horizon/objective_best_MISSA_test-%d.txt", test );
-	  FILE * arq4;
-	  arq4 = std::fopen (buffer4 , "w" );
-	  for(int i = 0; i < best_obj_vect.size(); i++){
-	    std::fprintf(arq4, "%.16lf", best_obj_vect[i] );
-		std::fprintf(arq4, "\n");
-	  }
-	  std::fclose(arq4);
-	  
-	  best_obj_vect.clear();
-      */      
+        
+      // Write objective values ina file.
+      char buffer [500];
+      int str = std::sprintf(buffer, "/home/objective_MISSA_test-%d.txt", test );
+      FILE * arq;
+      arq = std::fopen (buffer, "w" );
+      for(int i = 0; i < RN1_vect.size(); i++){
+              std::fprintf(arq, "%.16lf", RN1_vect[i] );
+              std::fprintf(arq, "\n");
+      }
+      std::fclose(arq);
+
+      RN1_vect.clear();
    }
    
    return( 0 );
