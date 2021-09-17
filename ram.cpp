@@ -162,7 +162,7 @@ int main( int argc, char **argv )
    }
    shuffle (agents.begin(), agents.end(), std::default_random_engine(seed));
    
-   for ( int test = 2; test < 3; test++ ){
+   for ( int test = 1; test < 9; test++ ){
 	   
 	   // Initial guess
 	   for (int i = 0; i < x.size(); i++)
