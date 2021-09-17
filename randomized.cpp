@@ -187,7 +187,7 @@ int main( int argc, char **argv )
 	   
 	   // Write objective values in a file.
 	   char buffer [500];
-	   int str = std::sprintf(buffer, "/home/rmassambone/Documentos/Elias-Eduardo/MISSA-testes/results/diminishing-stepsize/objective_randomized_test-%d.txt", test );
+	   int str = std::sprintf(buffer, "/home/objective_randomized_test-%d.txt", test );
 	   FILE * arq;
 	   arq = std::fopen (buffer , "w" );
 	   for(int i = 0; i < RN1_vect.size(); i++){
