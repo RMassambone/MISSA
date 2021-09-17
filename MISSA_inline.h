@@ -72,21 +72,20 @@ void MISSA::apply(double lambda, std::vector< int > values_chains, std::vector< 
    
    // Creates working threads:
    for ( unsigned cur_thread( 0 ); cur_thread < nthreads_; ++cur_thread ){
-      
-	  // If nchains = nthreads, then n_str = 1.
-	  n_str = ( nchains_ / nthreads_ ) + ( cur_thread < ( nchains_ % nthreads_ ) ); 
-      
-	  threads[ cur_thread ] = new std::thread( &MISSA::run_subiterations,
+	   // If nchains = nthreads, then n_str = 1.
+	   n_str = ( nchains_ / nthreads_ ) + ( cur_thread < ( nchains_ % nthreads_ ) );
+	   
+	   threads[ cur_thread ] = new std::thread( &MISSA::run_subiterations,
                                                this,
-											   lambda,
-											   values_chains[ cur_thread ],
-											   eps[ cur_thread ],
+					       lambda,
+					       values_chains[ cur_thread ],
+					       eps[ cur_thread ],
                                                first_str,
                                                n_str,
                                                std::ref( *( accus_[ cur_thread ] ) ),
                                                std::ref( x )
                                              );
-      first_str += n_str;
+	   first_str += n_str;
    }
 
    // Waits for threads to complete:
