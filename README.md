@@ -65,4 +65,4 @@ será gerado como saída o arquivo "teste1-fig.svg". Você pode alterar o códig
   
 ## Licença
 
-Este projeto está sob a licença [MIT](./LICENSE).
+Este projeto está sob a licença [![License: CC BY-NC-ND 4.0](https://licensebuttons.net/l/by-nc-nd/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
