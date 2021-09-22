@@ -3,7 +3,7 @@ Código fonte para os experimentos numéricos do paper "A Markovian Incremental 
 
 <p align="center">
   
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/tgmarinho/README-ecoleta">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/RMassambone/MISSA">
 
   <a href="https://github.com/tgmarinho/README-ecoleta/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/tgmarinho/README-ecoleta">
