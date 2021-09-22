@@ -61,9 +61,7 @@ Após executar todos os métodos, você pode desejar visualizar um gráfico com 
 ```
 será gerado como saída o arquivo "teste1-fig.svg". Você pode alterar o código para visualizar o gráfico para os demais testes.
   
-![Alt text](./teste1-fig.svg)
 <img src="./teste1-fig.svg">
-
   
 ## Licença
 
