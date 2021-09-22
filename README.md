@@ -9,7 +9,7 @@ Código fonte para os experimentos numéricos do paper "A Markovian Incremental 
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/RMassambone/MISSA">
   </a>
     
-   <img alt="License" src="https://img.shields.io/github/RMassambone/MISSA">
+   <img alt="License" src="https://img.shields.io/badge/License-GPLv3-blue.svg">
 
 ## Paper
 
