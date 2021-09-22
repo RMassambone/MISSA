@@ -14,9 +14,6 @@ Código fonte para os experimentos numéricos do paper "A Markovian Incremental 
 <p align="center">
  <a href="#-paper">Paper</a> •
  <a href="#-como-executar-o-projeto">Como executar</a> • 
- <a href="#-tecnologias">Tecnologias</a> • 
- <a href="#-contribuidores">Contribuidores</a> • 
- <a href="#-autor">Autor</a> • 
  <a href="#user-content--licença">Licença</a>
 </p>
 
