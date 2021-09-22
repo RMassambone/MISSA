@@ -12,8 +12,8 @@ Código fonte para os experimentos numéricos do paper "A Markovian Incremental 
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
 
 <p align="center">
- <a href="#-paper">Paper</a> •
- <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-paper">Paper</a>
+ <a href="#-como-executar-o-projeto">Como executar</a>
  <a href="#user-content--licença">Licença</a>
 </p>
 
