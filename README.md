@@ -13,8 +13,6 @@ Código fonte para os experimentos numéricos do paper "A Markovian Incremental 
 
 <p align="center">
  <a href="#-paper">Paper</a> •
- <a href="#-funcionalidades">Funcionalidades</a> •
- <a href="#-layout">Layout</a> • 
  <a href="#-como-executar-o-projeto">Como executar</a> • 
  <a href="#-tecnologias">Tecnologias</a> • 
  <a href="#-contribuidores">Contribuidores</a> • 
@@ -23,58 +21,11 @@ Código fonte para os experimentos numéricos do paper "A Markovian Incremental 
 </p>
 
 
-## 💻 Paper
+## Paper
 
-<p style='text-align: justify;'> O paper "Markovian Incremental Stochastic Subgradient Algorithms" aborda um novo algoritmo para a tarefa de minimizar uma soma de funções convexas. O método usa sequencialmente informações de subgradientes parciais e a sequência de subgradientes parciais é determinada por uma cadeia de Markov geral. Sua formulação possibilita aplicação em redes tal que o caminho do fluxo de informações seja selecionado estocasticamente. Provamos a convergência do algoritmo para uma função objetivo ponderada onde os pesos são dados pela distribuição de probabilidade limite, no sentido de Cesàro. Ao contrário de trabalhos anteriores na literatura, a distribuição limite de Cesàro é geral (não necessariamente uniforme), permitindo funções objetivo gerais ponderadas e flexibilidade no método. O preprint pode ser encontrado em https://arxiv.org/abs/2108.07900. </p>
+O paper "Markovian Incremental Stochastic Subgradient Algorithms" aborda um novo algoritmo para a tarefa de minimizar uma soma de funções convexas. O método usa informações parciais de subgradientes de forma sequencial com a escolha dos índices sendo realizada por uma cadeia de Markov geral. Sua formulação possibilita aplicação em redes de agentes tal que o caminho do fluxo de informações seja selecionado estocasticamente. Provamos a convergência do algoritmo para uma função objetivo ponderada onde os pesos são dados pela distribuição de probabilidade limite, no sentido de Cesàro. Ao contrário de trabalhos anteriores na literatura, a distribuição limite de Cesàro é geral (não necessariamente uniforme), permitindo funções objetivo gerais ponderadas e flexibilidade no método. O preprint pode ser encontrado em https://arxiv.org/abs/2108.07900.
 
-## ⚙️ Funcionalidades
-
-- [x] Empresas ou entidades podem se cadastrar na plataforma web enviando:
-  - [x] uma imagem do ponto de coleta
-  - [x] nome da entidade, email e whatsapp
-  - [x] e o endereço para que ele possa aparecer no mapa
-  - [x] além de selecionar um ou mais ítens de coleta: 
-    - lâmpadas
-    - pilhas e baterias
-    - papéis e papelão
-    - resíduos eletrônicos
-    - resíduos orgânicos
-    - óleo de cozinha
-
-- [x] Os usuários tem acesso ao aplicativo móvel, onde podem:
-  - [x] navegar pelo mapa para ver as instituições cadastradas
-  - [x] entrar em contato com a entidade através do E-mail ou do WhatsApp
-
----
-
-## 🎨 Layout
-
-O layout da aplicação está disponível no Figma:
-
-<a href="https://www.figma.com/file/1SxgOMojOB2zYT0Mdk28lB/Ecoleta?node-id=136%3A546">
-  <img alt="Made by tgmarinho" src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
-</a>
-
-
-### Mobile
-
-<p align="center">
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./assets/home-mobile.png" width="200px">
-
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./assets/detalhes-mobile.svg" width="200px">
-</p>
-
-### Web
-
-<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./assets/web.svg" width="400px">
-
-  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./assets/sucesso-web.svg" width="400px">
-</p>
-
----
-
-## 🚀 Como executar o projeto
+## 🚀 Como executar
 
 Este projeto é divido em três partes:
 1. Backend (pasta server) 
