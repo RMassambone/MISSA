@@ -15,7 +15,7 @@ Source code for the numerical experiments in the paper "A Markovian Incremental 
 
 The paper "Markovian Incremental Stochastic Subgradient Algorithms" (MISSA) addresses a new algorithm for minimizing a sum of convex functions. The method uses partial subgradient information sequentially, with index selection performed by a general Markov chain. Its formulation allows application in agent networks where the information flow path is stochastically selected. We prove the convergence of the algorithm to a weighted objective function where the weights are given by the limit probability distribution, in the Cesàro sense. Unlike previous works in the literature, the Cesàro limit distribution is general (not necessarily uniform), allowing for weighted general objective functions and method flexibility. The preprint can be found at https://arxiv.org/abs/2108.07900.
 
-## Como executar
+## How to Run
 
 This project features four implemented methods:
 1. MISSA (programa principal: missa.cpp)
