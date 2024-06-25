@@ -1,5 +1,5 @@
 # MISSA
-Código fonte para os experimentos numéricos do paper "A Markovian Incremental Stochastic Subgradient Algorithm", Rafael Massambone, Eduardo F. Costa e Elias S. Helou.
+Source code for the numerical experiments in the paper "A Markovian Incremental Stochastic Subgradient Algorithm" by Rafael Massambone, Eduardo F. Costa, and Elias S. Helou.
 
 <p align="center">
   
@@ -13,56 +13,56 @@ Código fonte para os experimentos numéricos do paper "A Markovian Incremental 
 
 ## Paper
 
-O paper "Markovian Incremental Stochastic Subgradient Algorithms" (MISSA) aborda um novo algoritmo para a tarefa de minimizar uma soma de funções convexas. O método usa informações parciais de subgradientes de forma sequencial, com a escolha dos índices sendo realizada por uma cadeia de Markov geral. Sua formulação possibilita aplicação em redes de agentes tal que o caminho do fluxo de informações seja selecionado estocasticamente. Provamos a convergência do algoritmo para uma função objetivo ponderada onde os pesos são dados pela distribuição de probabilidade limite, no sentido de Cesàro. Ao contrário de trabalhos anteriores na literatura, a distribuição limite de Cesàro é geral (não necessariamente uniforme), permitindo funções objetivo gerais ponderadas e flexibilidade no método. O preprint pode ser encontrado em https://arxiv.org/abs/2108.07900.
+The paper "Markovian Incremental Stochastic Subgradient Algorithms" (MISSA) addresses a new algorithm for minimizing a sum of convex functions. The method uses partial subgradient information sequentially, with index selection performed by a general Markov chain. Its formulation allows application in agent networks where the information flow path is stochastically selected. We prove the convergence of the algorithm to a weighted objective function where the weights are given by the limit probability distribution, in the Cesàro sense. Unlike previous works in the literature, the Cesàro limit distribution is general (not necessarily uniform), allowing for weighted general objective functions and method flexibility. The preprint can be found at https://arxiv.org/abs/2108.07900.
 
 ## Como executar
 
-Este projeto possui quatro métodos implementados:
+This project features four implemented methods:
 1. MISSA (programa principal: missa.cpp)
-2. Cyclic incremental stochastic subgradient algorithm (programa principal: cyclic.cpp)
-3. Randomized incremental stochastic subgradient algorithm (programa principal: randomized.cpp)
-4. Markov randomized incremental stochastic subgradient algorithm (programa principal: ram.cpp)
+2. Cyclic incremental stochastic subgradient algorithm (main program: cyclic.cpp)
+3. Randomized incremental stochastic subgradient algorithm (main program: randomized.cpp)
+4. Markov randomized incremental stochastic subgradient algorithm (main program: ram.cpp)
 
-MISSA executa subiterações em paralelo através da biblioteca `std::thread` https://en.cppreference.com/w/cpp/thread/thread. Nesse programa, implementamos duas cadeias de Markov <img src="https://render.githubusercontent.com/render/math?math=s_1(k), \, s_2(k)"> tomando valores em uma matriz de transição <img src="https://render.githubusercontent.com/render/math?math=P">. Você pode alterar isso de acordo com sua necessidade em missa.cpp.
+MISSA executes subiterations in parallel using the std::thread library https://en.cppreference.com/w/cpp/thread/thread. In this program, we implement two Markov chains <img src="https://render.githubusercontent.com/render/math?math=s_1(k), \, s_2(k)"> taking values in a transition matrix <img src="https://render.githubusercontent.com/render/math?math=P">. You can modify this according to your needs in missa.cpp.
 
 ```bash
 
-# Para compilar
+# To compile
 $ g++ -O3 -Wl,--no-as-needed -std=c++11 -lpthread missa.cpp -o missa
 
-# Para executar
+# To run
 $ ./missa <numero-iteracoes> <numero-cadeias=2> <numero-threads=2>
 
 ```
-Como resultado, o programa imprimirá na tela o CPU time para MISSA em cada um dos oito testes realizados. Além disso, arquivos "/home/objective_MISSA_test-1.txt", ..., "/home/objective_MISSA_test-8.txt" serão gerados em $HOME com os valores de <img src="https://render.githubusercontent.com/render/math?math=f(\mathbf{x}^k)"> para cada teste. Altere o diretório de destino para os arquivos de acordo com sua preferência.
+As a result, the program will print the CPU time for MISSA in each of the eight tests performed. Additionally, files "/home/objective_MISSA_test-1.txt", ..., "/home/objective_MISSA_test-8.txt" will be generated in $HOME with the values of <img src="https://render.githubusercontent.com/render/math?math=f(\mathbf{x}^k)"> for each test. Change the destination directory for the files according to your preference.
   
-Os demais métodos utilizam apenas uma cadeia de Markov. Eles podem ser compilados e executados com
+The other methods use only one Markov chain. They can be compiled and executed with
 
 ```bash
 
-# Para compilar
+# To compile
 $ g++ -O3 -Wl,--no-as-needed -std=c++11 -lpthread cyclic.cpp -o cyclic
 $ g++ -O3 -Wl,--no-as-needed -std=c++11 -lpthread ram.cpp -o ram
 $ g++ -O3 -Wl,--no-as-needed -std=c++11 -lpthread randomized.cpp -o randomized
 
-# Para executar
+# To run
 $ ./cyclic <numero-iteracoes> <numero-cadeias=1> <numero-threads=1>
 $ ./ram <numero-iteracoes> <numero-cadeias=1> <numero-threads=1>
 $ ./randomized <numero-iteracoes> <numero-cadeias=1> <numero-threads=1>
 
 ```
 
-Após executar todos os métodos, você pode desejar visualizar um gráfico com os resultados. Digitando
+After running all methods, you may want to view a graph of the results. By typing
   
 ```bash
   
   $ python3 graphs_diminishing_all_best.py
   
 ```
-será gerado como saída o arquivo "teste1-fig.svg". Você pode alterar o código para visualizar o gráfico para os demais testes.
+the file "teste1-fig.svg" will be generated as output. You can modify the code to visualize the graph for the other tests.
   
 <img src="./teste1-fig.svg">
   
-## Licença
+## License
 
-Este projeto está sob a licença [![License: CC BY-NC-ND 4.0](https://licensebuttons.net/l/by-nc-nd/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+This project is licensed under  [![License: CC BY-NC-ND 4.0](https://licensebuttons.net/l/by-nc-nd/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
